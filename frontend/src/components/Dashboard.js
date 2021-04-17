@@ -24,7 +24,6 @@ function Dashboard() {
         Faulpelz!
       </Title>
       <p>Dein Workout heute:</p>
-      <ProgrammImage />
       <a
         className="App-link"
         href="https://reactjs.org"
@@ -33,6 +32,10 @@ function Dashboard() {
       >
         Trainingsplan
       </a>
+      <ProgrammImage />
+      <p>Titel des Workouts</p>
+      <p>Titel des Programms</p>
+      <p>xxx kcal . 26 Min. . Beweglichkeit</p>
     </div>
   );
 }
