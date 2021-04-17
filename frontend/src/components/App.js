@@ -1,20 +1,34 @@
 import React from "react";
 import "./App.css";
-import Dashboard from "./Dashboard";
 import styled from "styled-components";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
+//Components
+import Dashboard from "./Dashboard";
+import Navigation from "./Navigation";
+// import Browse from "./Browse";
+// import Profile from "./Profile";
+
+//Styles
 const Wrapper = styled.div`
-  padding: 0 2.2rem;
-  background-color: #f8f5f1;
+  height: 100vh;
 `;
 
 function App() {
   return (
-    <Wrapper>
-      <header className="App-header">
-        <Dashboard />
-      </header>
-    </Wrapper>
+    <Router>
+      <Wrapper>
+        <header className="App-header">
+          <Dashboard />
+        </header>
+
+        <Navigation>
+          <Route exact path="/" component={Navigation} />
+          {/* <Route exact path="/browse" component={Browse} />
+          <Route exact path="/profile" component={Profile} /> */}
+        </Navigation>
+      </Wrapper>
+    </Router>
   );
 }
 

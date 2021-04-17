@@ -1,52 +1,61 @@
-// import React from "react";
-// //import { BrowserRouter } as Router from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import Icon1 from "../images/Icon-Home.svg";
+import Icon2 from "../images/Icon-Browse.svg";
+import Icon3 from "../images/Icon-Profile.svg";
 
-// function Navigation() {
-//   return (
-//     <Router>
-//       <div>
-//         <nav>
-//           <ul>
-//             <li>
-//               <Link to="/">Home</Link>
-//             </li>
-//             <li>
-//               <Link to="/about">Browse</Link>
-//             </li>
-//             <li>
-//               <Link to="/users">Profile</Link>
-//             </li>
-//           </ul>
-//         </nav>
+//Styles
 
-//         {/* A <Switch> looks through its children <Route>s and
-//               renders the first one that matches the current URL. */}
-//         <Switch>
-//           <Route path="/profile">
-//             <About />
-//           </Route>
-//           <Route path="/browse">
-//             <Users />
-//           </Route>
-//           <Route path="/">
-//             <Home />
-//           </Route>
-//         </Switch>
-//       </div>
-//     </Router>
-//   );
-// }
+const Nav = styled.nav`
+  justify-content: center;
+  background-color: #f5ebdd;
+  font-family: "Roboto", sans-serif;
 
-// function Home() {
-//   return <h2>Home</h2>;
-// }
+  a {
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  a:hover,
+  a.active {
+    ${"" /* color: #d5d5d5; */}
+  }
+`;
 
-// function About() {
-//   return <h2>Browse</h2>;
-// }
+const Navbar = styled.ul`
+  max-width: 800px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+  margin: auto;
+  font-size: 1.5em;
 
-// function Users() {
-//   return <h2>Profile</h2>;
-// }
+  li {
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+`;
 
-// export default Navigation;
+const Navigation = () => {
+  return (
+    <Nav>
+      <Navbar>
+        <li>
+          <NavLink to="/home">Home</NavLink>
+        </li>
+        <li>
+          <NavLink to="/browse">BROWSE</NavLink>
+        </li>
+        <li>
+          <NavLink to="/profile">PROFILE</NavLink>
+        </li>
+      </Navbar>
+    </Nav>
+  );
+};
+
+export default Navigation;
