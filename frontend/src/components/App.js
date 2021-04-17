@@ -1,5 +1,27 @@
-// import logo from './logo.svg';
-// import './App.css';
+import React from "react";
+import "./App.css";
+import Dashboard from "./Dashboard";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  padding: 0 2.2rem;
+  background-color: #f8f5f1;
+`;
+
+function App() {
+  return (
+    <Wrapper>
+      <header className="App-header">
+        <Dashboard />
+      </header>
+    </Wrapper>
+  );
+}
+
+export default App;
+
+// import logo from "./logo.svg";
+// import "./App.css";
 
 // function App() {
 //   return (
