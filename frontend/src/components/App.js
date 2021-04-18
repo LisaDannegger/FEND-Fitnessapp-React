@@ -3,7 +3,6 @@ import "./App.css";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-//Components
 import Dashboard from "./Dashboard";
 import Navigation from "./Navigation";
 // import Browse from "./Browse";
@@ -11,17 +10,22 @@ import Navigation from "./Navigation";
 
 //Styles
 const Wrapper = styled.div`
-  height: 100vh;
+  text-align: left;
+  background-color: white;
+  color: #1d2a73;
 `;
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Wrapper>
         <header className="App-header">
-          <Dashboard />
+          <Dashboard
+            userName="Lisa"
+            workoutTitle="Titel des Workouts"
+            programTitle="Titel des Programms"
+          />
         </header>
-
         <Navigation>
           <Route exact path="/" component={Navigation} />
           {/* <Route exact path="/browse" component={Browse} />
@@ -30,7 +34,7 @@ function App() {
       </Wrapper>
     </Router>
   );
-}
+};
 
 export default App;
 

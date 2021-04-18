@@ -9,7 +9,7 @@ import Icon3 from "../images/Icon-Profile.svg";
 
 const Nav = styled.nav`
   justify-content: center;
-  background-color: #f5ebdd;
+
   font-family: "Roboto", sans-serif;
 
   a {
@@ -23,15 +23,18 @@ const Nav = styled.nav`
 `;
 
 const Navbar = styled.ul`
-  max-width: 800px;
-  height: 50px;
+  background-color: #f5ebdd;
+  width: 100%;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
   list-style: none;
-  padding: 0;
   margin: auto;
-  font-size: 1.5em;
+  font-size: 1.5rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 
   li {
     cursor: pointer;
@@ -40,17 +43,27 @@ const Navbar = styled.ul`
   }
 `;
 
+const Icon = styled.img`
+  padding-bottom: 0.2rem;
+  margin: auto;
+  display: flex;
+  align-items: center;
+`;
+
 const Navigation = () => {
   return (
     <Nav>
       <Navbar>
         <li>
+          <Icon src={Icon1} alt="Icon 1" />
           <NavLink to="/home">Home</NavLink>
         </li>
         <li>
+          <Icon src={Icon2} alt="Icon 2" />
           <NavLink to="/browse">BROWSE</NavLink>
         </li>
         <li>
+          <Icon src={Icon3} alt="Icon 3" />
           <NavLink to="/profile">PROFILE</NavLink>
         </li>
       </Navbar>

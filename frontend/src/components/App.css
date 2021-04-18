@@ -2,6 +2,7 @@
   text-align: left;
   background-color: white;
   color: #1d2a73;
+  height: 100%;
 }
 
 /* .App-logo {
@@ -17,7 +18,6 @@
 
 .App-header {
   color: #1d2a73;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -25,9 +25,6 @@
   font-size: calc(10px + 2vmin);
 }
 
-.App-link {
-  color: #61dafb;
-}
 /* 
 @keyframes App-logo-spin {
   from {
