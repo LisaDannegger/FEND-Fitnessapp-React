@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import image from "../images/programme-large.svg";
+import image from "../../images/programme-large.svg";
 
 // const Wrapper = styled.div`
 //   display: flex;
@@ -18,7 +18,7 @@ const Bild = styled.img`
 const ProgrammImage = (props) => {
   return (
     <div>
-      <Bild src={image} alt={props.alt} />;
+      <Bild src={image} alt={props.alt} />
     </div>
   );
 };

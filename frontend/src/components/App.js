@@ -1,37 +1,44 @@
 import React from "react";
-import "./App.css";
-import styled from "styled-components";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import styled, { css } from "styled-components";
+import "./App.css";
 
-import Dashboard from "./Dashboard";
-import Navigation from "./Navigation";
+import theme from "./styles/theme";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./styles/GlobalStyle";
+
+import Dashboard from "./Home/Dashboard";
+import Navigation from "./Navigation/Navigation";
 // import Browse from "./Browse";
 // import Profile from "./Profile";
 
 //Styles
 const Wrapper = styled.div`
   text-align: left;
-  background-color: white;
   color: #1d2a73;
 `;
 
 const App = () => {
   return (
     <Router>
-      <Wrapper>
-        <header className="App-header">
-          <Dashboard
-            userName="Lisa"
-            workoutTitle="Titel des Workouts"
-            programTitle="Titel des Programms"
-          />
-        </header>
-        <Navigation>
-          <Route exact path="/" component={Navigation} />
-          {/* <Route exact path="/browse" component={Browse} />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Wrapper>
+          <header className="App-header">
+            <Dashboard
+              userName="Lisa"
+              workoutTitle="Titel des Workouts"
+              programTitle="Titel des Programms"
+            />
+          </header>
+
+          <Navigation>
+            <Route exact path="/" component={Navigation} />
+            {/* <Route exact path="/browse" component={Browse} />
           <Route exact path="/profile" component={Profile} /> */}
-        </Navigation>
-      </Wrapper>
+          </Navigation>
+        </Wrapper>
+      </ThemeProvider>
     </Router>
   );
 };
