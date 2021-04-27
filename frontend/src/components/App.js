@@ -11,6 +11,7 @@ import "./App.css";
 //Components
 import Dashboard from "./Home/Dashboard";
 import Browse from "./Browse/Browse";
+import ProgrammOverview from "./Browse/ProgrammOverview";
 
 const Wrapper = styled.div`
   text-align: left;
@@ -28,10 +29,13 @@ const App = () => {
             <Route exact path="/home">
               <Dashboard />
             </Route>
-            <Route path="/browse">
+            <Route exact path="/browse">
               <Browse />
             </Route>
           </Switch>
+          <Route exact path="/programm">
+            <ProgrammOverview />
+          </Route>
         </main>
       </Wrapper>
     </ThemeProvider>
