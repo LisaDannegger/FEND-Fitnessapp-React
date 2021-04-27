@@ -5,6 +5,8 @@ import Icon1 from "../../images/Icon-Home.svg";
 import Icon2 from "../../images/Icon-Browse.svg";
 import Icon3 from "../../images/Icon-Profile.svg";
 
+//import { ReactComponent as Homebutton } from "../icons/Home.svg";
+
 //Styles
 
 const Nav = styled.nav`
@@ -41,7 +43,6 @@ const Navbar = styled.ul`
 `;
 
 const Icon = styled.img`
-  padding-bottom: 0.2rem;
   margin: auto;
   display: flex;
   align-items: center;
@@ -53,15 +54,21 @@ const Navigation = () => {
       <Navbar>
         <li>
           <Icon src={Icon1} alt="Icon 1" />
-          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/home" activeClassName="active">
+            Home
+          </NavLink>
         </li>
         <li>
           <Icon src={Icon2} alt="Icon 2" />
-          <NavLink to="/browse">BROWSE</NavLink>
+          <NavLink to="/browse" activeClassName="active">
+            BROWSE
+          </NavLink>
         </li>
         <li>
           <Icon src={Icon3} alt="Icon 3" />
-          <NavLink to="/profile">PROFILE</NavLink>
+          <NavLink to="/profile" activeClassName="active">
+            PROFILE
+          </NavLink>
         </li>
       </Navbar>
     </Nav>

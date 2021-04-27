@@ -34,7 +34,20 @@ export default {
     h1: "3.6rem",
     h2: "2.4rem",
     h3: "1.8rem",
-    p: "1.6rem",
-    link: "1rem"
+    link: "1rem",
+  },
+
+  text: {
+    small: "1rem",
+    medium: "1.2rem",
+    large: "1.6rem",
+  },
+
+  // padding: {
+  //   mobile: "0 2rem",
+  // }
+
+  margin: {
+    mobile: "0 2rem",
   }
 };

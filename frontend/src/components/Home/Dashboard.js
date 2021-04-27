@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ProgrammImage from "../common/Programm-Image";
-// import Navigation from "./Navigation";
+import Navigation from "../Navigation/Navigation";
 // import { BrowserRouter } as Router from "react-router-dom";
 
 const Title = styled.h1`
@@ -10,47 +10,65 @@ const Title = styled.h1`
   color: ${(props) => props.theme.colors.darkBlue};
   line-height: 43.88px;
   margin-top: 7rem;
-  padding: 0 1.7rem;
 `;
 
-const ContentBox = styled.div`
-  margin-top: 1rem;
-  padding: 0 1.7rem;
-  margin-bottom: 11rem;
-  font-size: ${(props) => props.theme.fontSize.p};
-  font-weight: ${(props) => props.theme.fontWeight.thin};
-  line-height: 1.5rem;
-`;
+// const ContentBox = styled.div`
+//   margin-top: 1rem;
+//   padding: 0 1.7rem;
+//   margin-bottom: 11rem;
+//   font-size: ${(props) => props.theme.text.large};
+//   font-weight: ${(props) => props.theme.fontWeight.thin};
+//   line-height: 1.5rem;
+// `;
 
 const WorkoutHeader = styled.p`
   font-weight: ${(props) => props.theme.fontWeight.bold};
   font-size: ${(props) => props.theme.fontSize.h2};
   line-height: 29.2px;
   margin-top: 5rem;
-  padding: 0 1.7rem;
   display: inline-block;
   margin: 5rem 0 1rem 0;
 `;
 
+const WorkoutTitle = styled.p`
+  font-size: ${(props) => props.theme.text.large};
+  padding-bottom: 0.5rem;
+`;
+
+const WorkoutSubtitle = styled.p`
+  font-size: ${(props) => props.theme.text.small};
+`;
+
 const Link = styled.a`
   color: ${(props) => props.theme.colors.darkBlue};
-  padding-left: 1.5rem;
   font-size: 1.2rem;
 
   &:active {
   }
 `;
 
-function Dashboard(props) {
+const Wrapper = styled.div`
+  margin: ${(props) => props.theme.margin.mobile};
+`;
+
+const WrapperUmbruch = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+`;
+
+function Dashboard() {
   return (
-    <div>
-      <Title>
-        Guten
-        <br />
-        Morgen, {/*Function/ State Zeiterkennung Stephen Gryder*/}
-        <br />
-        {props.userName}
-      </Title>
+    <Wrapper>
+      <WrapperUmbruch>
+        <Title>
+          Guten
+         <br />
+          Morgen,
+          <br />
+          Lisa
+        </Title>
+      </WrapperUmbruch>
       <WorkoutHeader>Dein Workout heute</WorkoutHeader>
       <Link
         className="App-link"
@@ -60,14 +78,19 @@ function Dashboard(props) {
       >
         Trainingsplan
       </Link>
-      <ProgrammImage alt="Programm Image" />
-      <ContentBox>
-        <p>{props.workoutTitle}</p>
-        <p>{props.programTitle}</p>
-        <p>xxx kcal . 26 Min. . Beweglichkeit</p>
-      </ContentBox>
-    </div>
+      <div>
+        <ProgrammImage alt="Programm Image" />
+      </div>
+
+      <WorkoutTitle>Titel deines Workouts</WorkoutTitle>
+      <WorkoutTitle>Titel deines Programms</WorkoutTitle>
+      <WorkoutSubtitle>xxx kcal . 26 Min. . Beweglichkeit</WorkoutSubtitle>
+
+      <Navigation />
+    </Wrapper>
   );
 }
 
 export default Dashboard;
+
+//ul

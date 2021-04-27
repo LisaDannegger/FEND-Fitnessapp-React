@@ -1,18 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
+
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./styles/GlobalStyle";
+import theme from "./styles/theme";
 import styled, { css } from "styled-components";
 import "./App.css";
 
-import theme from "./styles/theme";
-import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./styles/GlobalStyle";
-
+//Components
 import Dashboard from "./Home/Dashboard";
-import Navigation from "./Navigation/Navigation";
-// import Browse from "./Browse";
-// import Profile from "./Profile";
+import Browse from "./Browse/Browse";
 
-//Styles
 const Wrapper = styled.div`
   text-align: left;
   color: #1d2a73;
@@ -20,26 +19,22 @@ const Wrapper = styled.div`
 
 const App = () => {
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Wrapper>
-          <header className="App-header">
-            <Dashboard
-              userName="Lisa"
-              workoutTitle="Titel des Workouts"
-              programTitle="Titel des Programms"
-            />
-          </header>
-
-          <Navigation>
-            <Route exact path="/" component={Navigation} />
-            {/* <Route exact path="/browse" component={Browse} />
-          <Route exact path="/profile" component={Profile} /> */}
-          </Navigation>
-        </Wrapper>
-      </ThemeProvider>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Wrapper>
+        <header className="App-header"></header>
+        <main>
+          <Switch>
+            <Route exact path="/home">
+              <Dashboard />
+            </Route>
+            <Route path="/browse">
+              <Browse />
+            </Route>
+          </Switch>
+        </main>
+      </Wrapper>
+    </ThemeProvider>
   );
 };
 
@@ -70,3 +65,10 @@ export default App;
 // }
 
 // export default App;
+
+// import {
+//   BrowserRouter,
+//   BrowserRouter as Router,
+//   Route,
+//   Switch,
+// } from "react-router-dom";

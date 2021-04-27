@@ -10,17 +10,13 @@ import image from "../../images/programme-large.svg";
 // `;
 
 const Bild = styled.img`
-  margin-left: 2rem;
-  width: 37.5rem;
-  height: 21.4rem;
+  margin: $
+  /* width: 37.5rem;
+  height: 21.4rem; */
 `;
 
 const ProgrammImage = (props) => {
-  return (
-    <div>
-      <Bild src={image} alt={props.alt} />
-    </div>
-  );
+  return <Bild src={image} alt={props.alt} />;
 };
 
 export default ProgrammImage;

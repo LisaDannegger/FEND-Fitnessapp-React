@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 62.5%;
+    font-size: 100%;
     color: #1d2a73;
     font-family: "Montserrat", sans-serif;
   }
