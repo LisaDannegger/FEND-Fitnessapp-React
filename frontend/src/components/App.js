@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/GlobalStyle";
@@ -12,6 +13,7 @@ import "./App.css";
 import Dashboard from "./Home/Dashboard";
 import Browse from "./Browse/Browse";
 import ProgrammOverview from "./Browse/ProgrammOverview";
+import Trainingsplan from "./Home/Trainingsplan";
 
 const Wrapper = styled.div`
   text-align: left;
@@ -35,6 +37,9 @@ const App = () => {
           </Switch>
           <Route exact path="/programm">
             <ProgrammOverview />
+          </Route>
+          <Route exact path="/trainingsplan">
+            <Trainingsplan />
           </Route>
         </main>
       </Wrapper>
