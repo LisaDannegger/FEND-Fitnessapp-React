@@ -5,6 +5,7 @@ import ProgrammImage from "../common/Programm-Image";
 import Navigation from "../Navigation/Navigation";
 import { DayTime } from "../common/DayTime";
 import { GetUserName } from "../common/GetUserName";
+import { useQuery, gql } from "@apollo/client";
 
 const WelcomeTitle = styled.h1`
   font-size: ${(props) => props.theme.fontSize.h1};
@@ -29,17 +30,15 @@ const WorkoutTitle = styled.p`
 `;
 
 const WorkoutSubtitle = styled.p`
-  font-size: ${(props) => props.theme.text.small};
+  font-size: ${(props) => props.theme.text.medium};
   padding-top: 0.4rem;
+  margin-bottom: 10rem;
 `;
 
 const TrainingsLink = styled.a`
   color: ${(props) => props.theme.colors.darkBlue};
-  font-size: 1.2rem;
+  font-size: ${(props) => props.theme.text.medium};
   margin-bottom: 1.5rem;
-
-  &:active {
-  }
 `;
 
 const Wrapper = styled.div`
@@ -52,7 +51,19 @@ const InnerWrapper = styled.div`
   align-items: flex-end;
 `;
 
+const DATAEXCHANGE = gql`
+  query {
+    allWorkout {
+      title
+      calories
+      categories
+    }
+  }
+`;
+
 function Dashboard() {
+  const { loading, error, data } = useQuery(DATAEXCHANGE); //dadurch bekommt apollo die query mit
+
   return (
     <Wrapper>
       <WelcomeTitle>
@@ -71,9 +82,14 @@ function Dashboard() {
         <ProgrammImage alt="Programm Image" />
       </div>
 
-      <WorkoutTitle>Titel deines Workouts</WorkoutTitle>
+      <WorkoutTitle>
+        {loading ? "loading" : data.allWorkout[0].title}
+      </WorkoutTitle>
       <WorkoutTitle>Titel deines Programms</WorkoutTitle>
-      <WorkoutSubtitle>xxx kcal . 26 Min. . Beweglichkeit</WorkoutSubtitle>
+      <WorkoutSubtitle>
+        {loading ? "loading" : data.allWorkout[0].calories} kcal - 26 Min. -
+        {loading ? "loading" : data.allWorkout[0].categories[0]}
+      </WorkoutSubtitle>
 
       <Navigation />
     </Wrapper>

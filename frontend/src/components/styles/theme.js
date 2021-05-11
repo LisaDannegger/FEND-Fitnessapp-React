@@ -34,6 +34,7 @@ export default {
     h1: "3.6rem",
     h2: "2.4rem",
     h3: "1.8rem",
+    p: "1.6rem",
     link: "1rem",
   },
 
