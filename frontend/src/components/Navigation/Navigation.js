@@ -52,24 +52,18 @@ const Navigation = () => {
   return (
     <Nav>
       <Navbar>
-        <li>
+        <NavLink to="/dashboard" activeClassName="active">
           <Icon src={Icon1} alt="Icon 1" />
-          <NavLink to="/home" activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
+          Home
+        </NavLink>
+        <NavLink to="/browse" activeClassName="active">
           <Icon src={Icon2} alt="Icon 2" />
-          <NavLink to="/browse" activeClassName="active">
-            BROWSE
-          </NavLink>
-        </li>
-        <li>
+          BROWSE
+        </NavLink>
+        <NavLink to="/profile" activeClassName="active">
           <Icon src={Icon3} alt="Icon 3" />
-          <NavLink to="/profile" activeClassName="active">
-            PROFILE
-          </NavLink>
-        </li>
+          PROFILE
+        </NavLink>
       </Navbar>
     </Nav>
   );

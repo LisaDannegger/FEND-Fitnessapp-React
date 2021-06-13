@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import IconHeart from "../../images/Icon-Heart.svg";
 import { Link } from "react-router-dom";
+import { useQuery, gql } from "@apollo/client";
 
 const Container = styled.div`
   padding: 2rem;
@@ -38,7 +39,7 @@ const ProgrammHeader = styled.div`
   flex-direction: row;
 `;
 
-const Programm = (props) => {
+const Programm = ({ program }) => {
   return (
     <Container>
       <ProgrammHeader>
@@ -48,7 +49,7 @@ const Programm = (props) => {
 
       <ProgrammLink>
         <Link to="/programm">
-          <h2>{props.title}</h2>
+          <h2>{program.title}</h2>
         </Link>
       </ProgrammLink>
     </Container>

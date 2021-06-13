@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 100%;
     color: #1d2a73;
     font-family: "Montserrat", sans-serif;
+    text-decoration: none;
   }
 
   body {
@@ -27,10 +28,6 @@ const GlobalStyle = createGlobalStyle`
             line-height: 21px;
           `}; */
     }
-  }
-
-  a {
-    text-decoration: none;
   }
 `;
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/GlobalStyle";
@@ -12,8 +11,9 @@ import "./App.css";
 //Components
 import Dashboard from "./Home/Dashboard";
 import Browse from "./Browse/Browse";
-import ProgrammOverview from "./Browse/ProgrammOverview";
+import ProgrammOverview from "./Programm/ProgrammOverview";
 import Trainingsplan from "./Home/Trainingsplan";
+import Workout from "../screens/Workout";
 
 const Wrapper = styled.div`
   text-align: left;
@@ -28,19 +28,23 @@ const App = () => {
         <header className="App-header"></header>
         <main>
           <Switch>
-            <Route exact path="/home">
+            <Route exact path="/dashboard">
               <Dashboard />
             </Route>
             <Route exact path="/browse">
               <Browse />
             </Route>
+
+            <Route path="/programm">
+              <ProgrammOverview />
+            </Route>
+            <Route exact path="/trainingsplan">
+              <Trainingsplan />
+            </Route>
+            <Route path="/workout">
+              <Workout />
+            </Route>
           </Switch>
-          <Route exact path="/programm">
-            <ProgrammOverview />
-          </Route>
-          <Route exact path="/trainingsplan">
-            <Trainingsplan />
-          </Route>
         </main>
       </Wrapper>
     </ThemeProvider>

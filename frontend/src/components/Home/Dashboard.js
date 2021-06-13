@@ -5,6 +5,7 @@ import ProgrammImage from "../common/Programm-Image";
 import Navigation from "../Navigation/Navigation";
 import { DayTime } from "../common/DayTime";
 import { GetUserName } from "../common/GetUserName";
+import { useQuery, gql } from "@apollo/client";
 
 const WelcomeTitle = styled.h1`
   font-size: ${(props) => props.theme.fontSize.h1};
@@ -29,17 +30,15 @@ const WorkoutTitle = styled.p`
 `;
 
 const WorkoutSubtitle = styled.p`
-  font-size: ${(props) => props.theme.text.small};
+  font-size: ${(props) => props.theme.text.medium};
   padding-top: 0.4rem;
+  margin-bottom: 10rem;
 `;
 
 const TrainingsLink = styled.a`
   color: ${(props) => props.theme.colors.darkBlue};
-  font-size: 1.2rem;
+  font-size: ${(props) => props.theme.text.medium};
   margin-bottom: 1.5rem;
-
-  &:active {
-  }
 `;
 
 const Wrapper = styled.div`
@@ -52,7 +51,37 @@ const InnerWrapper = styled.div`
   align-items: flex-end;
 `;
 
+const DATAEXCHANGE = gql`
+  query {
+    allProgram(limit: 1) {
+      _id
+      title
+      workouts {
+        _key
+        day
+        Workout {
+          _id
+          title
+          calories
+          duration
+          categories
+        }
+      }
+    }
+  }
+`;
+
 function Dashboard() {
+  const { loading, error, data } = useQuery(DATAEXCHANGE); //dadurch bekommt apollo die query mit
+  console.log(data);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: </p>;
+
+  const program = data.allProgram[0];
+  const { calories, categories, duration } = program.workouts[0].Workout;
+
+  const categoryString = categories.join(", ");
+
   return (
     <Wrapper>
       <WelcomeTitle>
@@ -71,9 +100,11 @@ function Dashboard() {
         <ProgrammImage alt="Programm Image" />
       </div>
 
-      <WorkoutTitle>Titel deines Workouts</WorkoutTitle>
-      <WorkoutTitle>Titel deines Programms</WorkoutTitle>
-      <WorkoutSubtitle>xxx kcal . 26 Min. . Beweglichkeit</WorkoutSubtitle>
+      <WorkoutTitle>{program.workouts[0].Workout.title}</WorkoutTitle>
+      <WorkoutTitle>{program.title}</WorkoutTitle>
+      <WorkoutSubtitle>
+        {`${calories}kcal - ${duration}Min. - ${categoryString}`}
+      </WorkoutSubtitle>
 
       <Navigation />
     </Wrapper>
@@ -81,5 +112,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
-//ul
