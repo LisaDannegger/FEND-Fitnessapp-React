@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { PieChart } from "react-minimal-pie-chart";
+import { useQuery, gql } from "@apollo/client";
+
 import Navigation from "../Navigation/Navigation";
 import Button from "../common/Button";
 import Day from "./Day";
-
 // import CloseButton from "../common/X";
 import BackButton from "../common/ArrowBack";
 
@@ -23,14 +24,14 @@ const Header = styled.div`
 
 const ProgrammTitle = styled.h1`
   font-size: ${(props) => props.theme.fontSize.h1};
-  width: 50%;
+  width: 100%;
   margin: auto auto;
   text-align: center;
 `;
 
 const ProgrammDescription = styled.div`
   width: 100%;
-  height: 24.7rem;
+  height: auto;
   background-color: ${(props) => props.theme.colors.beige};
 `;
 
@@ -123,14 +124,44 @@ const LinkAll = styled.a`
   margin-bottom: 1.5rem;
 `;
 
-const ProgrammOverview = () => {
+const GETPROGRAM = gql`
+  query {
+    allProgram {
+      _id
+      title
+      duration
+      difficulty
+      description
+      workouts {
+        _key
+        day
+        Workout {
+          _id
+          title
+          calories
+          duration
+          categories
+        }
+      }
+    }
+  }
+`;
+
+const Program = () => {
+  const { loading, error, data } = useQuery(GETPROGRAM);
+  console.log(data);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: </p>;
+
+  const program = data.allProgram[0];
+
   return (
     <OuterWrapper>
       <Header>
         <CrossButton to="/browse">
           <BackButton />
         </CrossButton>
-        <ProgrammTitle>Titel des Programms</ProgrammTitle>
+        <ProgrammTitle>{program.title}</ProgrammTitle>
 
         <ButtonBox>
           <Button as={Link} to="/workout">
@@ -156,14 +187,7 @@ const ProgrammOverview = () => {
       </Header>
 
       <ProgrammDescription>
-        <Description>
-          Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und
-          Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in
-          Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans.
-          Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt
-          sie mit den nötigen Regelialien. Es ist ein paradiesmatisches Land, in
-          dem einem gebratene Satzteile in den Mund fliegen.
-        </Description>
+        <Description>{program.description}</Description>
       </ProgrammDescription>
       <ChartContainer>
         <Title>So ist das Programm aufgeteilt:</Title>
@@ -214,4 +238,4 @@ const ProgrammOverview = () => {
   );
 };
 
-export default ProgrammOverview;
+export default Program;

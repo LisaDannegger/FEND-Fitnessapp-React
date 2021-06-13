@@ -2,6 +2,7 @@ import React from "react";
 import Programm from "./Programme";
 import styled from "styled-components";
 import Navigation from "../Navigation/Navigation";
+import { useQuery, gql } from "@apollo/client";
 
 const Container = styled.div`
   padding: ${(props) => props.theme.margin.mobile};
@@ -20,20 +21,43 @@ const Filter = styled.p`
   margin-bottom: 2.7rem;
 `;
 
-const Browse = (props) => {
+const GETPROGRAM = gql`
+  query {
+    allProgram {
+      _id
+      title
+      slug {
+        current
+      }
+    }
+  }
+`;
+
+function Browse() {
+  const { loading, error, data } = useQuery(GETPROGRAM);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: </p>;
+
+  const programs = data.allProgram;
+
   return (
     <Container>
       <BrowseTitle>Browse</BrowseTitle>
       <Filter>Filter</Filter>
-      <Programm title="Titel des Programms" />
-      <Programm title="100 Sit-Ups Challenge" />
-      <Programm title="100 Push-Up Challenge" />
-      <Programm title="Title des Programms" />
-      <Programm title="Title des Programms" />
-      <Programm title="Title des Programms" />
+      <ul>
+        {programs.map((program) => (
+          <Programm key={program._id} program={program} />
+        ))}
+
+        {/* <Programm title="100 Sit-Ups Challenge" />
+        <Programm title="100 Push-Up Challenge" />
+        <Programm title="Title des Programms" />
+        <Programm title="Title des Programms" />
+        <Programm title="Title des Programms" /> */}
+      </ul>
       <Navigation />
     </Container>
   );
-};
+}
 
 export default Browse;

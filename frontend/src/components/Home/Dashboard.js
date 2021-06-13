@@ -53,16 +53,34 @@ const InnerWrapper = styled.div`
 
 const DATAEXCHANGE = gql`
   query {
-    allWorkout {
+    allProgram(limit: 1) {
+      _id
       title
-      calories
-      categories
+      workouts {
+        _key
+        day
+        Workout {
+          _id
+          title
+          calories
+          duration
+          categories
+        }
+      }
     }
   }
 `;
 
 function Dashboard() {
   const { loading, error, data } = useQuery(DATAEXCHANGE); //dadurch bekommt apollo die query mit
+  console.log(data);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: </p>;
+
+  const program = data.allProgram[0];
+  const { calories, categories, duration } = program.workouts[0].Workout;
+
+  const categoryString = categories.join(", ");
 
   return (
     <Wrapper>
@@ -82,13 +100,10 @@ function Dashboard() {
         <ProgrammImage alt="Programm Image" />
       </div>
 
-      <WorkoutTitle>
-        {loading ? "loading" : data.allWorkout[0].title}
-      </WorkoutTitle>
-      <WorkoutTitle>Titel deines Programms</WorkoutTitle>
+      <WorkoutTitle>{program.workouts[0].Workout.title}</WorkoutTitle>
+      <WorkoutTitle>{program.title}</WorkoutTitle>
       <WorkoutSubtitle>
-        {loading ? "loading" : data.allWorkout[0].calories} kcal - 26 Min. -
-        {loading ? "loading" : data.allWorkout[0].categories[0]}
+        {`${calories}kcal - ${duration}Min. - ${categoryString}`}
       </WorkoutSubtitle>
 
       <Navigation />
@@ -97,5 +112,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
-//ul
